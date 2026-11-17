@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>定格动画拍摄台</title>
+</head>
+<body>
+  <header id="topbar">
+    <h1>定格动画拍摄台</h1>
+    <div class="cam-controls">
+      <select id="cameraSelect" title="选择摄像头"></select>
+      <button id="startCam">连接摄像头</button>
+      <span id="camStatus" class="dim">未连接</span>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="previewWrap">
+      <canvas id="preview"></canvas>
+      <div id="toast" hidden></div>
+      <div id="modeBadge" class="dim">取景</div>
+    </section>
+
+    <aside id="sidebar">
+      <fieldset>
+        <legend>洋葱皮</legend>
+        <label class="row"><input type="checkbox" id="onion" checked /> 启用</label>
+        <label class="row">不透明度 <input type="range" id="onionOpacity" min="10" max="90" value="45" /></label>
+        <label class="row">前帧数量
+          <select id="onionCount">
+            <option value="1" selected>1 帧</option>
+            <option value="2">2 帧</option>
+            <option value="3">3 帧</option>
+          </select>
+        </label>
+        <label class="row">前帧颜色 <input type="color" id="prevColor" value="#ff5a4e" /></label>
+        <label class="row">后帧颜色 <input type="color" id="nextColor" value="#4ed27a" /></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>拍摄</legend>
+        <button id="captureBtn" class="big" disabled>拍摄 (空格)</button>
+        <div id="pendingInfo" class="dim">下一帧:追加到末尾</div>
+        <div id="selPanel" hidden>
+          <div>已选中第 <b id="selIndex"></b> 帧</div>
+          <div class="btnrow">
+            <button id="retakeBtn">重拍此帧</button>
+            <button id="insertBtn">在此后插入</button>
+            <button id="deleteBtn" class="danger">删除</button>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>回放</legend>
+        <label class="row">帧率
+          <select id="fps">
+            <option value="12" selected>12 fps</option>
+            <option value="24">24 fps</option>
+          </select>
+        </label>
+        <button id="playBtn" disabled>回放</button>
+        <div id="frameInfo" class="dim">共 0 帧</div>
+      </fieldset>
+
+      <fieldset>
+        <legend>导出</legend>
+        <button id="exportBtn" disabled>导出 1080p MP4</button>
+        <progress id="exportProgress" value="0" max="1"></progress>
+        <div id="exportStatus" class="dim"></div>
+      </fieldset>
+    </aside>
+  </main>
+
+  <footer id="filmstripWrap">
+    <div id="filmstrip"></div>
+  </footer>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
