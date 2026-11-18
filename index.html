@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>定格动画拍摄台</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>定格动画拍摄台</h1>
+      <div id="camStatus" class="cam-status">正在连接摄像头…</div>
+    </header>
+
+    <main>
+      <section class="stage">
+        <canvas id="view" width="1920" height="1080"></canvas>
+        <div id="modeBadge" class="mode-badge"></div>
+        <div id="warning" class="warning" hidden></div>
+      </section>
+
+      <aside class="panel">
+        <section>
+          <h2>洋葱皮</h2>
+          <label class="row">
+            不透明度
+            <input id="onionOpacity" type="range" min="0" max="100" value="50" />
+          </label>
+          <label class="row"><input id="onionPrev" type="checkbox" checked /> 前一帧（红）</label>
+          <label class="row"><input id="onionPrev2" type="checkbox" /> 前两帧（橙）</label>
+          <label class="row"><input id="onionNext" type="checkbox" checked /> 后一帧（绿）</label>
+        </section>
+
+        <section>
+          <h2>拍摄</h2>
+          <button id="btnCapture" class="big" disabled>拍摄（空格）</button>
+          <div class="row">
+            <button id="btnReplace" disabled>重拍选中帧</button>
+            <button id="btnInsert" disabled>插到选中帧后</button>
+            <button id="btnDelete" disabled>删除选中帧</button>
+          </div>
+          <div id="frameInfo" class="info">0 帧</div>
+        </section>
+
+        <section>
+          <h2>回放</h2>
+          <div class="row">
+            <button id="btnPlay" disabled>播放</button>
+            <label><input type="radio" name="fps" value="12" /> 12 fps</label>
+            <label><input type="radio" name="fps" value="24" checked /> 24 fps</label>
+            <label><input id="loop" type="checkbox" checked /> 循环</label>
+          </div>
+        </section>
+
+        <section>
+          <h2>导出</h2>
+          <button id="btnExport" disabled>导出 1080p MP4</button>
+          <progress id="exportProgress" value="0" max="100" hidden></progress>
+          <div id="exportStatus" class="info"></div>
+        </section>
+      </aside>
+    </main>
+
+    <footer>
+      <div id="timeline" class="timeline"></div>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
