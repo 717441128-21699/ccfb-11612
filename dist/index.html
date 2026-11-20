@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>定格动画拍摄台</title>
+    <script type="module" crossorigin src="/assets/index-59tl3uFr.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CJsHxI7J.css">
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>定格动画拍摄台</h1>
+        <div class="header-actions">
+          <button id="btn-camera">连接摄像头</button>
+          <select id="sel-resolution" title="拍摄分辨率">
+            <option value="1920x1080" selected>1920 × 1080</option>
+            <option value="1280x720">1280 × 720</option>
+          </select>
+          <span id="camera-status" class="status">未连接</span>
+        </div>
+      </header>
+
+      <main>
+        <section class="stage">
+          <div class="viewport-wrap">
+            <canvas id="viewport" width="960" height="540"></canvas>
+            <div id="alert-banner" class="alert-banner" hidden></div>
+            <div id="playback-badge" class="playback-badge" hidden>回放中</div>
+          </div>
+
+          <div class="controls">
+            <div class="control-group">
+              <button id="btn-capture" class="primary" disabled title="快捷键: 空格">● 拍摄 (空格)</button>
+              <button id="btn-replace" disabled title="用新画面替换选中的帧">重拍当前帧</button>
+              <button id="btn-insert" disabled title="在选中帧之后插入一帧">插入帧</button>
+              <button id="btn-delete" disabled>删除帧</button>
+            </div>
+
+            <div class="control-group">
+              <button id="btn-play" disabled>▶ 回放</button>
+              <label class="fps-toggle">
+                <input type="radio" name="fps" value="12" checked /> 12 fps
+              </label>
+              <label class="fps-toggle">
+                <input type="radio" name="fps" value="24" /> 24 fps
+              </label>
+            </div>
+
+            <div class="control-group onion">
+              <label><input type="checkbox" id="chk-onion" checked /> 洋葱皮</label>
+              <label>层数 <input type="range" id="rng-onion-depth" min="1" max="5" value="2" /></label>
+              <label>前一帧 <input type="color" id="col-prev" value="#ff4040" /></label>
+              <label>后一帧 <input type="color" id="col-next" value="#40c8ff" /></label>
+              <label>浓度 <input type="range" id="rng-onion-alpha" min="10" max="80" value="40" /></label>
+            </div>
+
+            <div class="control-group">
+              <button id="btn-export" disabled>导出 1080p MP4</button>
+              <span id="export-status" class="status"></span>
+            </div>
+          </div>
+
+          <div id="frame-info" class="frame-info">0 帧</div>
+        </section>
+
+        <section class="timeline-section">
+          <div id="timeline" class="timeline"></div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
